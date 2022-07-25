@@ -22,12 +22,16 @@
     </head>
 
     <body>
-        <h1>Current Events</h1>
+        <h1>Sets</h1>
         <ul class="events">
             <% for(let i=0; i < info.length; i++) {%>
                 <li class="event">
+                    <span><%= info[i].event %></span>
                     <span><%= info[i].eventName %></span>
+                    <span><%= info[i].type %></span>
+                    <span><%= info[i].venue %></span>
                     <span><%= info[i].location %></span>
+                    <span><%= info[i].setCount %></span>
                     <span><%= info[i].dates %></span>
                     <span><%= info[i].likes %></span>
                     <span class='fa fa-thumbs-up'></span>
@@ -36,11 +40,16 @@
                 <% } %>
         </ul>
 
-        <h2>Add an event:</h2>
+        <h2>Add a Set!</h2>
 
         <form action="/addEvent" method="POST">
-            <input type="text" placeholder="Event Name" name="eventName">
+            <input type="text" placeholder="Fan-given Event Name" name="event">
+            <input type="text" placeholder="Official Event Name" name="eventName">
+            <input type="text" placeholder="Indoor, Outdoor, or Theater?" name="type">
             <input type="text" placeholder="Event Venue" name="venue">
+            <input type="text" placeholder="City, State" name="location">
+            <input type="text" placeholder="How many sets?" name="setCount">
+            <input type="text" placeholder="Dates" name="dates">
             <input type="submit">
         </form>
 

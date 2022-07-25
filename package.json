@@ -1,7 +1,7 @@
 {
   "name": "tipper-events-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "tipper events database",
   "main": "server.js",
   "dependencies": {
     "abbrev": "^1.1.1",
@@ -45,6 +45,7 @@
     "dot-prop": "^5.3.0",
     "duplexer3": "^0.1.4",
     "ee-first": "^1.1.1",
+    "ejs": "^3.1.8",
     "emoji-regex": "^8.0.0",
     "encodeurl": "^1.0.2",
     "end-of-stream": "^1.4.4",
@@ -104,6 +105,7 @@
     "mimic-response": "^1.0.1",
     "minimatch": "^3.1.2",
     "minimist": "^1.2.6",
+    "mongodb": "^4.7.0",
     "ms": "^2.0.0",
     "negotiator": "^0.6.3",
     "nopt": "^1.0.10",
@@ -170,9 +172,17 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "",
+  "author": "deija",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^2.0.16"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/synesdeija/tipper-events-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/synesdeija/tipper-events-api/issues"
+  },
+  "homepage": "https://github.com/synesdeija/tipper-events-api#readme"
 }
