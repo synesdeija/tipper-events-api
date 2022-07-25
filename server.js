@@ -9,7 +9,7 @@ let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'events'
 
-MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
+MongoClient.connect(dbConnectionStr, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(client => {
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
@@ -30,13 +30,13 @@ app.get('/', (request, response) => {
 
 app.post('/addEvent', (request, response) => {
     db.collection('events').insertOne({
-        fanName: request.body.event,
-        eventName: request.body.eventName,
-        type: request.body.type,
-        venue: request.body.venue,
-        location: request.body.location,
-        setCount: request.body.setCount,
-        dates: request.body.dates,
+        fanName: request.body.eventS,
+        eventName: request.body.eventNameS,
+        type: request.body.typeS,
+        venue: request.body.venueS,
+        location: request.body.locationS,
+        setCount: request.body.setCountS,
+        dates: request.body.datesS,
         likes: 0
     })
 
@@ -49,13 +49,13 @@ app.post('/addEvent', (request, response) => {
 
 app.put('/addOneLike', (request, response) => {
     db.collection('events').updateOne({
-            fanName: request.body.event,
-            eventName: request.body.eventName,
-            type: request.body.type,
-            venue: request.body.venue,
-            location: request.body.location,
-            setCount: request.body.setCount,
-            dates: request.body.dates,
+            fanName: request.body.eventS,
+            eventName: request.body.eventNameS,
+            type: request.body.typeS,
+            venue: request.body.venueS,
+            location: request.body.locationS,
+            setCount: request.body.setCountS,
+            dates: request.body.datesS,
             likes: request.body.likesS
         }, {
             $set: {
@@ -74,7 +74,9 @@ app.put('/addOneLike', (request, response) => {
 })
 
 app.delete('/deleteEvent', (request, response) => {
-    db.collection('events').deleteOne({ event: request.body.eventS })
+    db.collection('events').deleteOne({
+            fanName: request.body.eventS
+        })
         .then(result => {
             console.log('Event Deleted')
             response.json('Event Deleted')
