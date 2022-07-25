@@ -1,5 +1,5 @@
-const deleteText = document.querySelectorAll('.fa-trash')
-const thumbText = document.querySelectorAll('.fa-thumbs-up')
+const deleteText = document.querySelectorAll('.fa-trash-xmark')
+const thumbText = document.querySelectorAll('.fa-duotone fa-thumbs-up')
 
 Array.from(deleteText).forEach((element) => {
     element.addEventListener('click', deleteEvent)
@@ -10,15 +10,22 @@ Array.from(thumbText).forEach((element) => {
 })
 
 async function deleteEvent() {
-    const sName = this.parentNode.childNodes[1].innerText
-    const bName = this.parentNode.childNodes[3].innerText
+    const fanName = this.parentNode.childNodes[1].innerText
+    const eventName = this.parentNode.childNodes[3].innerText
     try {
-        const response = await fetch('deleteRapper', {
+        const response = await fetch('deleteEvent', {
             method: 'delete',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                'stageNameS': sName,
-                'birthNameS': bName
+                'eventS': fanName,
+                'eventNameS': eventName,
+                'typeS': type,
+                'venueS': venue,
+                'locationS': location,
+                'setCountS': setCount,
+                'datesS': dates,
+
+
             })
         })
         const data = await response.json()
@@ -31,17 +38,22 @@ async function deleteEvent() {
 }
 
 async function addLike() {
-    const sName = this.parentNode.childNodes[1].innerText
-    const bName = this.parentNode.childNodes[3].innerText
-    const tLikes = Number(this.parentNode.childNodes[5].innerText)
+    const fanName = this.parentNode.childNodes[1].innerText
+    const eventName = this.parentNode.childNodes[3].innerText
+    const likes = Number(this.parentNode.childNodes[5].innerText)
     try {
         const response = await fetch('addOneLike', {
             method: 'put',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                'stageNameS': sName,
-                'birthNameS': bName,
-                'likesS': tLikes
+                'eventS': fanName,
+                'eventNameS': eventName,
+                'typeS': type,
+                'venueS': venue,
+                'locationS': location,
+                'setCountS': setCount,
+                'datesS': dates,
+                'likeS': tlikes
             })
         })
         const data = await response.json()

@@ -6,9 +6,8 @@ require('dotenv').config()
 
 
 let db,
-    dbConnectionStr =
-    'mongodb+srv://deija1:buttstuff@cluster0.1w4hgfp.mongodb.net/?retryWrites=true&w=majority',
-    dbName = 'tipper-events-api'
+    dbConnectionStr = process.env.DB_STRING,
+    dbName = 'events'
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
@@ -22,7 +21,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 app.get('/', (request, response) => {
-    db.collection('tipper-events-api').find().sort({ likes: -1 }).toArray()
+    db.collection('events').find().sort({ likes: -1 }).toArray()
         .then(data => {
             response.render('index.ejs', { info: data })
         })
@@ -30,17 +29,18 @@ app.get('/', (request, response) => {
 })
 
 app.post('/addEvent', (request, response) => {
-    db.collection('tipper-events-api').insertOne({
-            event: request.body.event,
-            eventName: request.body.eventName,
-            type: request.body.type,
-            venue: request.body.venue,
-            location: request.body.location,
-            setCount: request.body.setCount,
-            dates: request.body.dates,
-            likes: 0
-        })
-        .then(result => {
+    db.collection('events').insertOne({
+        fanName: request.body.event,
+        eventName: request.body.eventName,
+        type: request.body.type,
+        venue: request.body.venue,
+        location: request.body.location,
+        setCount: request.body.setCount,
+        dates: request.body.dates,
+        likes: 0
+    })
+
+    .then(result => {
             console.log('Event Added!')
             response.redirect('/')
         })
@@ -48,8 +48,8 @@ app.post('/addEvent', (request, response) => {
 })
 
 app.put('/addOneLike', (request, response) => {
-    db.collection('tipper-events-api').updateOne({
-            event: request.body.event,
+    db.collection('events').updateOne({
+            fanName: request.body.event,
             eventName: request.body.eventName,
             type: request.body.type,
             venue: request.body.venue,
@@ -74,7 +74,7 @@ app.put('/addOneLike', (request, response) => {
 })
 
 app.delete('/deleteEvent', (request, response) => {
-    db.collection('tipper-events-api').deleteOne({ event: request.body.eventS })
+    db.collection('events').deleteOne({ event: request.body.eventS })
         .then(result => {
             console.log('Event Deleted')
             response.json('Event Deleted')

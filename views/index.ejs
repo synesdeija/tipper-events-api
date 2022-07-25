@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://kit.fontawesome.com/e10456d112.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -22,7 +23,7 @@
     </head>
 
     <body>
-        <h1>Sets</h1>
+        <h1>Tipper Events</h1>
         <ul class="events">
             <% for(let i=0; i < info.length; i++) {%>
                 <li class="event">
@@ -34,8 +35,8 @@
                     <span><%= info[i].setCount %></span>
                     <span><%= info[i].dates %></span>
                     <span><%= info[i].likes %></span>
-                    <span class='fa fa-thumbs-up'></span>
-                    <span class='fa fa-trash'></span>
+                    <span class="fa-duotone fa-thumbs-up"></span>
+                    <span class="fa-solid fa-trash-xmark"></span>
                 </li>
                 <% } %>
         </ul>
@@ -43,9 +44,9 @@
         <h2>Add a Set!</h2>
 
         <form action="/addEvent" method="POST">
-            <input type="text" placeholder="Fan-given Event Name" name="event">
+            <input type="text" placeholder="Event Fan Name" name="event">
             <input type="text" placeholder="Official Event Name" name="eventName">
-            <input type="text" placeholder="Indoor, Outdoor, or Theater?" name="type">
+            <input type="text" placeholder="Indoor/Outdoor/or Theater?" name="type">
             <input type="text" placeholder="Event Venue" name="venue">
             <input type="text" placeholder="City, State" name="location">
             <input type="text" placeholder="How many sets?" name="setCount">
